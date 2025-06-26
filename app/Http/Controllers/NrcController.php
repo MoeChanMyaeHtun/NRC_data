@@ -74,14 +74,12 @@ class NrcController extends Controller
             'state_code' => [
                 'required', 
                 'string', 
-                'size:2',
                 Rule::exists('nrc_states', 'code')
             ],
             'township_code' => [
                 'required',
                 'string',
-                'size:3',
-                Rule::exists('nrc_townships', 'code')->where('state_code', $request->state_code)
+                Rule::exists('nrc_townships', 'code')->where('nrc_state_id', $request->state_code)
             ],
             'type' => [
                 'required',
